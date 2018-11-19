@@ -1,0 +1,150 @@
+/*
+Compile: sass /Users/Charlie/Code/learning/sites/2tone-circle-mixin/mixin.scss /Users/Charlie/Code/learning/sites/2tone-circle-mixin/css/style.css
+*/
+
+// strips affixes like px or em from numbers
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@mixin stamp($width, $height, $border, $bg, $cutoutSize) {
+  
+  // initialising variables
+  $axis: '';
+  $posToAdd: '';
+  $l2: (); // a list which holds the other list
+
+  // logic variables
+
+  $left: ($width / 2 + 15) * -1;
+  $right: $width / 2 + 5;
+  $top: ($height / 2 + 15) * -1;
+  $bottom: $height / 2 + 5;
+
+  $horiStart: ($right + 15) * -1;
+  $vertStart: ($bottom + 5);
+
+  $iterationsVertical: $height / 20;
+  $iterationsHorizontal: $width / 20;
+  $strippedIterationsVertical: strip-unit($iterationsVertical);
+  $strippedIterationsHorizontal: strip-unit($iterationsHorizontal);
+
+  $sides: ($left $right $top $bottom);
+
+  // actual logic
+
+  @each $side in $sides {
+      // iterate through sides
+      @if $side == $left or $side == $right {
+          $axis: $strippedIterationsVertical;
+          $posToAdd: $vertStart;
+      } @else if $side == $top or $side == $bottom {
+          $axis: $strippedIterationsHorizontal;
+          $posToAdd: $horiStart;
+      }
+
+      $positions: (); // initialise list
+      // get positions for vertical face, if statement
+      @for $i from 1 through $axis {
+          @if $axis == $strippedIterationsVertical {
+              $posToAdd: $posToAdd - 20; // iterate down
+          } @else {
+              $posToAdd: $posToAdd + 20;
+          }
+          $positions: append($positions, $posToAdd); // add itself to the list
+      }
+      
+      
+      
+      $halfEntry: '';
+      $fullEntry: ''; // initialise variable
+      $affix: 0px $bg; // the affix to append to each entry
+      @each $pos in $positions {
+          @if $axis == $strippedIterationsVertical {
+              $halfEntry: join($side, $pos);
+          } @else {
+              $halfEntry: join($pos, $side);
+          }
+          $fullEntry: join($halfEntry, $affix);
+          $entryToString: inspect($fullEntry); // switch list into string
+          $l2: join($l2, $entryToString, comma);
+      }
+  }
+
+  // normal styles
+
+  width: $width;
+  height: $height;
+
+  border: 10px solid $border;
+  box-sizing: default;
+
+  margin: 8rem auto;
+  position: relative;
+
+  &:after { content: ''; }
+  &:before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      background-color: transparent;
+      border-radius: 50%;
+      content: "";
+      width: $cutoutSize;
+      height: $cutoutSize;
+      
+      box-shadow: $l2;
+          
+          
+  }
+}
+
+@mixin circle($size,$top,$right,$innerOrOuter,$padding,$colorLighter,$colorDarker) {
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    border: 2px solid;
+    @if $innerOrOuter == inner {
+        top: $top;
+        right: $right;
+        border-color: $colorDarker;
+    }
+    @if $innerOrOuter == outer {
+        top: $top + $padding;
+        right: $right + $padding;
+        border-color: $colorLighter;
+    }
+}
+
+// styles
+
+.container {
+    width: 550px;
+    height: 400px;
+    background-color:lightgrey;
+    padding: 20px;
+    
+    position: relative;
+  }
+
+  .stamp {
+    @include stamp(160px,240px,brown,green,10px);
+
+    margin-left: auto;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .circle_inner {
+    @include circle(50px,-15px,70px,inner,20px,rebeccapurple,purple);
+  }
+
+  .circle_outer {
+    @include circle(50px,-15px,70px,outer,20px,rebeccapurple,purple);
+  }

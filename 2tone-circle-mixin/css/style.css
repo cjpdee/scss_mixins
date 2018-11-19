@@ -1,0 +1,60 @@
+/*
+Compile: sass /Users/Charlie/Code/learning/sites/2tone-circle-mixin/mixin.scss /Users/Charlie/Code/learning/sites/2tone-circle-mixin/css/style.css
+*/
+.container {
+  width: 550px;
+  height: 400px;
+  background-color: lightgrey;
+  padding: 20px;
+  position: relative;
+}
+
+.stamp {
+  width: 160px;
+  height: 240px;
+  border: 10px solid brown;
+  box-sizing: default;
+  margin: 8rem auto;
+  position: relative;
+  margin-left: auto;
+  position: relative;
+  overflow: hidden;
+}
+.stamp:after {
+  content: "";
+}
+.stamp:before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: transparent;
+  border-radius: 50%;
+  content: "";
+  width: 10px;
+  height: 10px;
+  box-shadow: -95px 110px 0px green, -95px 90px 0px green, -95px 70px 0px green, -95px 50px 0px green, -95px 30px 0px green, -95px 10px 0px green, -95px -10px 0px green, -95px -30px 0px green, -95px -50px 0px green, -95px -70px 0px green, -95px -90px 0px green, -95px -110px 0px green, 85px 110px 0px green, 85px 90px 0px green, 85px 70px 0px green, 85px 50px 0px green, 85px 30px 0px green, 85px 10px 0px green, 85px -10px 0px green, 85px -30px 0px green, 85px -50px 0px green, 85px -70px 0px green, 85px -90px 0px green, 85px -110px 0px green, -80px -135px 0px green, -60px -135px 0px green, -40px -135px 0px green, -20px -135px 0px green, 0px -135px 0px green, 20px -135px 0px green, 40px -135px 0px green, 60px -135px 0px green, -80px 125px 0px green, -60px 125px 0px green, -40px 125px 0px green, -20px 125px 0px green, 0px 125px 0px green, 20px 125px 0px green, 40px 125px 0px green, 60px 125px 0px green;
+}
+
+.circle_inner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid;
+  top: -15px;
+  right: 70px;
+  border-color: purple;
+}
+
+.circle_outer {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid;
+  top: 5px;
+  right: 90px;
+  border-color: rebeccapurple;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,20 @@
+@function em($pxval, $base: 16) {
+	@return ($pxval / $base) * 1em;
+}
+
+@mixin carouselRotation($numItems) {
+	$rotateIterate: (360 / $numItems);
+	$rotation: 0deg;
+	@for $i from 1 to ($numItems + 1) {
+		&:nth-child(#{$i}) {
+			transform: rotate($rotation);
+			$rotation: $rotation + $rotateIterate;
+
+			& .info__wrap {
+				transform: rotate( ($rotation - $rotateIterate ) * -1);
+
+				
+			}
+		}
+	}
+}

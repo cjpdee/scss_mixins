@@ -1,0 +1,93 @@
+$circleSize:        300;
+$interfaceColor:    black;
+$accentColor:       red;
+
+%circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.circle {
+    @extend %circle;
+    position: relative;
+
+    width: em(300);
+    height: em(300);
+
+    border: em(3) solid $interfaceColor;
+}
+
+.circle__inner {
+    @extend %circle;
+    width: em(200);
+    height: em(200);
+
+    border: em(3) dashed $interfaceColor;
+}
+
+.circle__heading {
+    color: $interfaceColor;
+}
+
+.axis {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    transform-origin: right;
+    
+    @include carouselRotation(6);
+}
+
+.radio-hidden {
+    position: relative;
+    z-index: 100;
+    width: em(40);
+    height: em(40);
+    transform: translateX(-50%);
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + .radio-custom {
+        border-color: $accentColor;
+
+        &:after {
+            background-color: $accentColor;
+        }
+    }
+    &:checked ~ .info__wrap {
+        display: block;
+    }
+}
+
+.radio-custom {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%,-50%);
+
+    width: em(40);
+    height: em(40);
+    border: em(1) solid $interfaceColor;
+    border-radius: 50%;
+}
+
+.info__wrap {
+    position: absolute;
+    top: 0;
+    right: em(120);
+
+    display: none;
+    width: em(270);
+}

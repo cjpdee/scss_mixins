@@ -1,0 +1,13 @@
+@import 'mixin';
+
+// variables
+$stamp: white;
+$border: #a29271;
+$bg: #f8f3cf;
+
+
+html { background-color: $bg; font-size: 62.5%; height: 100%; }
+
+.stamp {
+  @include stamp(130px, 150px, $border, $bg, 10px);
+}
