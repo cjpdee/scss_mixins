@@ -43,19 +43,19 @@ body {
 
 .axis {
     position: absolute;
-    width: 50%;
-    left: 0;
-    transform-origin: right;
+    height: 50%;
+    top: 0;
+    transform-origin: bottom;
     
-    @include carouselRotation(6);
+    @include carouselRotation(7);
 }
 
 .radio-hidden {
     position: relative;
     z-index: 100;
-    width: em(40);
-    height: em(40);
-    transform: translateX(-50%);
+    width: em(50);
+    height: em(50);
+    transform: translateY(-60%);
     opacity: 0;
     cursor: pointer;
 
@@ -73,8 +73,8 @@ body {
 
 .radio-custom {
     position: absolute;
-    top: 50%;
-    left: 0;
+    left: 50%;
+    top: 0;
     transform: translate(-50%,-50%);
 
     width: em(40);

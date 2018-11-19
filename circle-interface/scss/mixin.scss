@@ -8,13 +8,57 @@
 	@for $i from 1 to ($numItems + 1) {
 		&:nth-child(#{$i}) {
 			transform: rotate($rotation);
-			$rotation: $rotation + $rotateIterate;
+			
 
 			& .info__wrap {
-				transform: rotate( ($rotation - $rotateIterate ) * -1);
+				transform: rotate( ($rotation) * -1);
+				
 
+				@if (($rotation >= 315 and $rotation <= 360) or ($rotation >= 0 and $rotation <= 45)) {
+					left: 50%;
+					transform: rotate( ($rotation) * -1) translate(-50%, calc(-100% - 30px));
+					background-color: orange;
+				}
+
+				@if $rotation >= 45 and $rotation <= 90 {
+					left: 0;
+					transform: rotate( ($rotation) * -1) translate(50%, calc(-170% - 30px));
+					background-color: blue;
+				}
+
+				@if $rotation >= 90 and $rotation <= 135 {
+					left: 0;
+					transform: rotate( ($rotation) * -1) translate(100%, calc(-100%));
+					background-color: green;
+				}
+
+				@if $rotation >= 135 and $rotation <= 180 {
+					left: 0;
+					transform: rotate( ($rotation) * -1) translate(110%, calc(100% - 30px));
+					background-color: red;
+				}
+
+				@if $rotation >= 180 and $rotation <= 225 {
+					right: 0;
+					transform: rotate( ($rotation) * -1) translate(-100%, calc(110% - 30px));
+					background-color: pink;
+				}
+
+				@if $rotation >= 225 and $rotation <= 270 {
+					right: 0;
+					transform: rotate( ($rotation) * -1) translate(calc(-95%),-100%);
+					background-color: lightblue;
+				}
+
+				@if $rotation >= 270 and $rotation <= 315 {
+					right: 0;
+					transform: rotate( ($rotation) * -1) translate(-50%, calc(-170% - 30px));
+					background-color: darkslateblue;
+				}
 				
 			}
+
+			$rotation: $rotation + $rotateIterate;
 		}
 	}
 }

@@ -33,53 +33,80 @@ body {
 
 .axis {
   position: absolute;
-  width: 50%;
-  left: 0;
-  transform-origin: right;
+  height: 50%;
+  top: 0;
+  transform-origin: bottom;
 }
 .axis:nth-child(1) {
   transform: rotate(0deg);
 }
 .axis:nth-child(1) .info__wrap {
   transform: rotate(0deg);
+  left: 50%;
+  transform: rotate(0deg) translate(-50%, calc(-100% - 30px));
+  background-color: orange;
 }
 .axis:nth-child(2) {
-  transform: rotate(60deg);
+  transform: rotate(51.4285714286deg);
 }
 .axis:nth-child(2) .info__wrap {
-  transform: rotate(-60deg);
+  transform: rotate(-51.4285714286deg);
+  left: 0;
+  transform: rotate(-51.4285714286deg) translate(50%, calc(-170% - 30px));
+  background-color: blue;
 }
 .axis:nth-child(3) {
-  transform: rotate(120deg);
+  transform: rotate(102.8571428571deg);
 }
 .axis:nth-child(3) .info__wrap {
-  transform: rotate(-120deg);
+  transform: rotate(-102.8571428571deg);
+  left: 0;
+  transform: rotate(-102.8571428571deg) translate(100%, calc(-100%));
+  background-color: green;
 }
 .axis:nth-child(4) {
-  transform: rotate(180deg);
+  transform: rotate(154.2857142857deg);
 }
 .axis:nth-child(4) .info__wrap {
-  transform: rotate(-180deg);
+  transform: rotate(-154.2857142857deg);
+  left: 0;
+  transform: rotate(-154.2857142857deg) translate(110%, calc(100% - 30px));
+  background-color: red;
 }
 .axis:nth-child(5) {
-  transform: rotate(240deg);
+  transform: rotate(205.7142857143deg);
 }
 .axis:nth-child(5) .info__wrap {
-  transform: rotate(-240deg);
+  transform: rotate(-205.7142857143deg);
+  right: 0;
+  transform: rotate(-205.7142857143deg) translate(-100%, calc(110% - 30px));
+  background-color: pink;
 }
 .axis:nth-child(6) {
-  transform: rotate(300deg);
+  transform: rotate(257.1428571429deg);
 }
 .axis:nth-child(6) .info__wrap {
-  transform: rotate(-300deg);
+  transform: rotate(-257.1428571429deg);
+  right: 0;
+  transform: rotate(-257.1428571429deg) translate(calc(-95%), -100%);
+  background-color: lightblue;
+}
+.axis:nth-child(7) {
+  transform: rotate(308.5714285714deg);
+}
+.axis:nth-child(7) .info__wrap {
+  transform: rotate(-308.5714285714deg);
+  right: 0;
+  transform: rotate(-308.5714285714deg) translate(-50%, calc(-170% - 30px));
+  background-color: darkslateblue;
 }
 
 .radio-hidden {
   position: relative;
   z-index: 100;
-  width: 2.5em;
-  height: 2.5em;
-  transform: translateX(-50%);
+  width: 3.125em;
+  height: 3.125em;
+  transform: translateY(-60%);
   opacity: 0;
   cursor: pointer;
 }
@@ -95,8 +122,8 @@ body {
 
 .radio-custom {
   position: absolute;
-  top: 50%;
-  left: 0;
+  left: 50%;
+  top: 0;
   transform: translate(-50%, -50%);
   width: 2.5em;
   height: 2.5em;
