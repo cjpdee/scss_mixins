@@ -18,12 +18,16 @@ body {
   position: relative;
   width: 18.75em;
   height: 18.75em;
+  width: 25em;
+  height: 25em;
   border: 0.1875em solid black;
 }
 
 .circle__inner {
   width: 12.5em;
   height: 12.5em;
+  width: 18.75em;
+  height: 18.75em;
   border: 0.1875em dashed black;
 }
 

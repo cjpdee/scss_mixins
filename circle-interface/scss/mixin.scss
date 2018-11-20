@@ -2,7 +2,7 @@
 	@return ($pxval / $base) * 1em;
 }
 
-@mixin carouselRotation($numItems) {
+@mixin circleRotation($numItems) {
 	$rotateIterate: (360 / $numItems);
 	$rotation: 0deg;
 	@for $i from 1 to ($numItems + 1) {
