@@ -1,0 +1,163 @@
+// General purpose utilities which can be helpful for frontend development
+
+/*
+	Triangles
+*/
+@mixin triangle($direction, $sizeH, $sizeV, $color) {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	-moz-transform: scale(.9999);
+
+	@if $direction==top {
+		border-width: 0 $sizeV $sizeH $sizeV;
+		border-color: transparent transparent $color transparent;
+	}
+
+	@if $direction==bottom {
+		border-width: $sizeV $sizeH 0 $sizeV;
+		border-color: $color transparent transparent transparent;
+	}
+
+	@if $direction==left {
+		border-width: $sizeV $sizeH $sizeV 0;
+		border-color: transparent $color transparent transparent;
+	}
+
+	@if $direction==right {
+		border-width: $sizeV 0 $sizeV $sizeH;
+		border-color: transparent transparent transparent $color;
+	}
+
+	@if $direction==topright {
+		border-width: 0 $sizeH $sizeV 0;
+		border-color: transparent $color transparent transparent;
+	}
+
+	@if $direction==bottomright {
+		border-width: 0 0 $sizeH $sizeV;
+		border-color: transparent transparent $color transparent;
+	}
+
+	@if $direction==bottomleft {
+		border-width: $sizeH 0 0 $sizeV;
+		border-color: transparent transparent transparent $color;
+	}
+
+	@if $direction==topleft {
+		border-width: $sizeH $sizeV 0 0;
+		border-color: $color transparent transparent transparent;
+	}
+}
+
+
+/*
+	Responsive Ratio
+*/
+
+// To create elements which scale according to aspect ratio
+// You might use this in a wrapper and give it's children %fill-screen
+@mixin responsive-ratio($x, $y) {
+	$padding: unquote(($y / $x) * 100 + '%');
+	position: relative;
+	padding-bottom: $padding;
+}
+
+/*
+So to use this you could write the below and your div would have a ratio commonly utilised by video.
+.video {
+	@include responsive-ratio(16,9);
+}
+.video__inner {
+	@include %fill-container
+}
+*/
+
+%fill-screen {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+%overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+}
+
+
+// For areas users shouldn't be able to select
+%unselectable {
+	-webkit-touch-callout: none;
+	user-select: none;
+}
+
+// Boilerplate for pseudo elements - they all need these
+// Not an issue to overwrite if required
+%pseudo {
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+
+
+/*
+	Truncating and fading text
+*/
+
+@mixin truncate($truncation-boundary) {
+	max-width: $truncation-boundary;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+// Note: this mixin is dependent on %pseudo
+@mixin fade($backgroundColor: white, $numLines: 2) {
+	position: relative;
+	height: em($lhBase * $numLines);
+	overflow: hidden;
+	background-color: $backgroundColor;
+
+	&:after {
+		@extend %pseudo;
+		bottom: 0;
+		right: 0;
+		width: 70%;
+		height: em($lhBase);
+		background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba($backgroundColor, 1) 50%);
+	}
+}
+
+// Not dependent on pseudo
+@mixin fade($backgroundColor: white, $numLines: 2) {
+	position: relative;
+	height: em($lhBase * $numLines);
+	overflow: hidden;
+	background-color: $backgroundColor;
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 70%;
+		height: em($lhBase);
+		background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba($backgroundColor, 1) 50%);
+	}
+}
+
+// Use letter spacing values from photoshop in CSS
+@function letter-spacing($value) {
+	@return $value / 1000 * 1em;
+}

@@ -1,0 +1,25 @@
+//
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items:     center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    height: 400px;
+    max-width: 600px;
+
+    border: 1px solid;
+
+    background-image: url('target.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
+
+.heading {
+    font-size: 100px;
+    font-family: sans-serif;
+}
