@@ -1,7 +1,7 @@
 // General purpose utilities which can be helpful for frontend development
 
 /*
-	Triangles
+* Triangles
 */
 @mixin triangle($direction, $sizeH, $sizeV, $color) {
 	content: '';
@@ -52,9 +52,43 @@
 	}
 }
 
+/*
+* Fluid property
+* Useful for scaling images or absolutely positioned items
+* Generally useful for when using distinct breakpoints is less than ideal
+* Works by setting min and max values and a viewport width range
+* The property will then scale linearly between those 2 values in that range
+*/
+@mixin fp(
+	$property,
+	$min,
+	$max,
+	$start: 320,
+	$end: 1920,
+	$clip: true,
+	$clipAtStart: true,
+	$clipAtEnd: true
+) {
+	$multiplier: ($max - $min) / ($end - $start) * 100;
+	$adder: ($min * $end - $max * $start) / ($end - $start);
+	$adder: ($adder/10) + rem;
+	$formula: calc(#{$multiplier + 0vw} + #{$adder});
+	@if $clip and $clipAtStart {
+		@media (max-width: ($start/16)+em) {
+			#{$property}: ($min/10) + rem;
+		}
+	}
+	@if $clip and $clipAtEnd {
+		@media (min-width: ($end/16)+em) {
+			#{$property}: ($max/10) + rem;
+		}
+	}
+	#{$property}: $formula;
+}
+
 
 /*
-	Responsive Ratio
+* Responsive Ratio
 */
 
 // To create elements which scale according to aspect ratio
@@ -110,7 +144,7 @@ So to use this you could write the below and your div would have a ratio commonl
 
 
 /*
-	Truncating and fading text
+* Truncating and fading text
 */
 
 @mixin truncate($truncation-boundary) {
